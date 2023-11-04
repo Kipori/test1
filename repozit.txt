@@ -1,0 +1,41 @@
+/**
+ * Function to perform spell check on a given text.
+ *
+ * @param {string} text - The text to be spell checked.
+ * @param {string[]} dictionary - An array of words representing the dictionary.
+ * @returns {string[]} An array of misspelled words found in the text.
+ */
+function spellCheck(text, dictionary) {
+    // Split the text into individual words
+    const words = text.split(" ");
+
+    // Array to store misspelled words
+    const misspelledWords = [];
+
+    // Iterate over each word in the text
+    for (let word of words) {
+        // Remove any punctuation marks from the word
+        const cleanedWord = word.replace(/[^\w\s]|_/g, "").toLowerCase();
+
+        // Check if the cleaned word is in the dictionary
+        if (!dictionary.includes(cleanedWord)) {
+            misspelledWords.push(cleanedWord);
+        }
+    }
+
+    return misspelledWords;
+}
+
+// Example usage
+
+// Define a sample dictionary
+const dictionary = ["apple", "banana", "orange", "grape", "kiwi"];
+
+// Define a sample text
+const text = "I like to eat apples and bananas, but not oranges or grapes.";
+
+// Perform spell check on the text using the dictionary
+const misspelled = spellCheck(text, dictionary);
+
+// Output the misspelled words
+console.log("Misspelled words:", misspelled);
